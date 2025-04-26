@@ -1,4 +1,4 @@
-name: "CodeQL Final Scan with HTML Report"
+name: "CodeQL Scan (JavaScript Only)"
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   analyze:
-    name: Analyze with CodeQL and Save HTML
+    name: Analyze JavaScript Code with CodeQL
     runs-on: ubuntu-latest
 
     permissions:
@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'php' ]  # Because DVWA is PHP
+        language: [ 'javascript' ]
 
     steps:
     - name: Checkout repository
