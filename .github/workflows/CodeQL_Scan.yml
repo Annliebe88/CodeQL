@@ -1,4 +1,5 @@
-name: "CodeQL Scan (JavaScript Only)"
+
+name: "CodeQL Scan (JavaScript Only) with SARIF Artifact"
 
 on:
   push:
@@ -36,19 +37,8 @@ jobs:
       with:
         output: results.sarif
 
-    - name: Install Node.js (needed for sarif-to-html)
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-
-    - name: Install sarif-to-html tool
-      run: npm install -g sarif-to-html
-
-    - name: Convert SARIF to HTML
-      run: sarif-to-html results.sarif -o codeql-report.html
-
-    - name: Upload HTML report
+    - name: Upload SARIF Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: codeql-html-report
-        path: codeql-report.html
+        name: codeql-results
+        path: results.sarif
